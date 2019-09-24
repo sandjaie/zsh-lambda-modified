@@ -31,13 +31,14 @@ function get_right_prompt() {
 PROMPT=$'\n'$LAMBDA'\
  %{$fg_bold[$USERCOLOR]%}%n\
  %{$fg_no_bold[magenta]%}[%3~]\
+ $(aws_prompt_info)\
  $(check_git_prompt_info)\
-%{$reset_color%}'
+ %{$reset_color%}'
 
 RPROMPT='$(get_right_prompt)'
 
 # Format for git_prompt_info()
-ZSH_THEME_GIT_PROMPT_PREFIX="at %{$fg_bold[green]%} %{$fg[blue]%}"
+ZSH_THEME_GIT_PROMPT_PREFIX="at %{$fg_bold[green]%}λ %{$fg[blue]%}"
 # 
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY=""
@@ -58,3 +59,8 @@ ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg_bold[white]%}^"
 # Format for git_prompt_long_sha() and git_prompt_short_sha()
 ZSH_THEME_GIT_PROMPT_SHA_BEFORE=" %{$fg_bold[white]%}[%{$fg_bold[blue]%}"
 ZSH_THEME_GIT_PROMPT_SHA_AFTER="%{$fg_bold[white]%}]"
+
+SHOW_AWS_PROMPT=true
+# AWS
+ZSH_THEME_AWS_PREFIX="[aws-profile:"
+ZSH_THEME_AWS_SUFFIX="]"

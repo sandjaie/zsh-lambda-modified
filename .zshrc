@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/sandjaier/.oh-my-zsh"
+export ZSH="/Users/SRavi-MacBook/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -63,9 +63,12 @@ ZSH_DISABLE_COMPFIX=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
 plugins=(
-  git
+  git aws
 )
+
+SHOW_AWS_PROMPT=true
 
 source $ZSH/oh-my-zsh.sh
 
@@ -98,14 +101,16 @@ export LANG=en_US.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cs50="gcc -lcs50-9.0.0"
-export PATH=/Users/sandjaier/Library/Python/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/sandjaier/terraform:$PATH
+#export PATH=/Users/$(whoami)/Library/Python/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/$(whoami)/terraform:$PATH
+export PATH=/Users/$(whoami)/Library/Python/3.7/bin:/Users/$(whoami)/Library/Python/3.7/bin/aws_completer:/Users/$(whoami)/terraform:$PATH
+
 unsetopt prompt_cr prompt_sp
 
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /Users/sandjaier/terraform/vault vault
+complete -o nospace -C /Users/$(whoami)/terraform/vault vault
 setopt no_share_history
 unsetopt share_history
-export SSLKEYLOGFILE=/Users/sandjaier/testws/kring/ssh_keys.txt
+export SSLKEYLOGFILE=/Users/$(whoami)/testws/kring/ssh_keys.txt
 export LIBRARY_PATH=/usr/local/lib
 export C_INCLUDE_PATH=/usr/local/include
 export LD_LIBRARY_PATH=/usr/local/lib
@@ -115,7 +120,7 @@ if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
 
-export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+#export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 
 #function to git push
 gitpush() {
@@ -124,10 +129,10 @@ gitpush() {
     git push
 }
 alias gp=gitpush
-
+alias python=python3
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/sandjaier/.sdkman"
-[[ -s "/Users/sandjaier/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/sandjaier/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="/Users/$(whoami)/.sdkman"
+[[ -s "/Users/$(whoami)/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/$(whoami)/.sdkman/bin/sdkman-init.sh"
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
