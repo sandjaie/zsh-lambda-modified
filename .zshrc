@@ -102,12 +102,13 @@ export LANG=en_US.UTF-8
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cs50="gcc -lcs50-9.0.0"
 #export PATH=/Users/$(whoami)/Library/Python/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/$(whoami)/terraform:$PATH
-export PATH=/Users/$(whoami)/Library/Python/3.7/bin:/Users/$(whoami)/Library/Python/3.7/bin/aws_completer:/Users/$(whoami)/terraform:$PATH
+export PATH=/Users/$(whoami)/Library/Python/3.7/bin/aws:/Users/$(whoami)/Library/Python/3.7/bin:/Users/$(whoami)/Library/Python/3.7/bin/aws_completer:/Users/$(whoami)/terraform:$PATH
 
 unsetopt prompt_cr prompt_sp
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /Users/$(whoami)/terraform/vault vault
+complete -C '/Users/$(whoami)/Library/Python/3.7/bin/aws_completer' aws
 setopt no_share_history
 unsetopt share_history
 export SSLKEYLOGFILE=/Users/$(whoami)/testws/kring/ssh_keys.txt
