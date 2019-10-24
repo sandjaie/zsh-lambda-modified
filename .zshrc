@@ -133,6 +133,7 @@ alias gp=gitpush
 alias python=python3
 alias gs="git status"
 alias pycharm="pycharm ."
+alias ls="ls -FGp"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/$(whoami)/.sdkman"
 [[ -s "/Users/$(whoami)/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/$(whoami)/.sdkman/bin/sdkman-init.sh"
