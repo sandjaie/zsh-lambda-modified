@@ -38,7 +38,7 @@ export UPDATE_ZSH_DAYS=13
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="false"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -64,9 +64,6 @@ ENABLE_CORRECTION="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-plugins=(
-  git aws
-)
 
 SHOW_AWS_PROMPT=true
 
@@ -77,7 +74,6 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -100,50 +96,53 @@ export LANG=en_US.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias cs50="gcc -lcs50-9.0.0"
 #export PATH=/Users/$(whoami)/Library/Python/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/$(whoami)/terraform:$PATH
-export PATH=/Users/$(whoami)/Library/Python/3.7/bin/aws:/Users/$(whoami)/Library/Python/3.7/bin:/Users/$(whoami)/Library/Python/3.7/bin/aws_completer:/Users/$(whoami)/terraform:$PATH
 
+# ZSH Options
 unsetopt prompt_cr prompt_sp
-
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /Users/$(whoami)/terraform/vault vault
-complete -C '/Users/$(whoami)/Library/Python/3.7/bin/aws_completer' aws
 setopt no_share_history
 unsetopt share_history
-export SSLKEYLOGFILE=/Users/$(whoami)/testws/kring/ssh_keys.txt
+
+# Exports
+export LANG=en_US.UTF-8
+export PATH=/Users/$(whoami)/Library/Python/3.7/bin/aws:/Users/$(whoami)/Library/Python/3.7/bin:/Users/$(whoami)/Library/Python/3.7/bin/aws_completer:/Users/$(whoami)/terraform:$PATH
+#export SSLKEYLOGFILE=/Users/$(whoami)/testws/kring/ssh_keys.txt
 export LIBRARY_PATH=/usr/local/lib
 export C_INCLUDE_PATH=/usr/local/include
 export LD_LIBRARY_PATH=/usr/local/lib
 
-#heroku autocompletion
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-fi
+eval "$(direnv hook zsh bash)"
 
-#export PATH="/usr/local/opt/mysql-client/bin:$PATH"
-
-#function to git push
+# Functions
+# gitpush -- using for dummy pushes
 gitpush() {
     git add $1
     git commit -m "$2"
     git push
 }
+
+
+# Alias
+alias cs50="gcc -lcs50-9.0.0"
 alias gp=gitpush
 alias python=python3
 alias gs="git status"
-alias pycharm="pycharm ."
+alias pycharm="pycharm"
 alias ls="ls -FGp"
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/$(whoami)/.sdkman"
-[[ -s "/Users/$(whoami)/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/$(whoami)/.sdkman/bin/sdkman-init.sh"
-#fpath=($fpath ~/.zsh/completion)
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
+alias vim="/usr/local/bin/vim"
+
+# Auto Completions
+# Kubectl
+if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
+
+# Heroku
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
+
+complete -o nospace -C /Users/$(whoami)/terraform/vault vault
+complete -C '/Users/$(whoami)/Library/Python/3.7/bin/aws_completer' aws
+
+# Plugins
+plugins=(git aws history kubectl httpie brew python)
