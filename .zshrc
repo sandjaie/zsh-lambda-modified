@@ -64,6 +64,8 @@ ENABLE_CORRECTION="false"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
+# Plugins
+plugins=(git kubectl aws zsh-syntax-highlighting)
 
 SHOW_AWS_PROMPT=true
 
@@ -101,7 +103,7 @@ source $ZSH/oh-my-zsh.sh
 # ZSH Options
 unsetopt prompt_cr prompt_sp
 autoload -U +X bashcompinit && bashcompinit
-setopt no_share_history
+#setopt share_history
 unsetopt share_history
 
 # Exports
@@ -111,6 +113,7 @@ export PATH=/Users/$(whoami)/Library/Python/3.7/bin/aws:/Users/$(whoami)/Library
 export LIBRARY_PATH=/usr/local/lib
 export C_INCLUDE_PATH=/usr/local/include
 export LD_LIBRARY_PATH=/usr/local/lib
+export KUBECONFIG=$KUBECONFIG:~/.kube/config-playground
 
 eval "$(direnv hook zsh bash)"
 
@@ -122,8 +125,20 @@ gitpush() {
     git push
 }
 
+# Use lf to switch directories and bind it to ctrl-o
+# lfcd() {
+#     tmp="$(mktemp)"
+#     lf -last-dir-path="$tmp" "$@"
+#     if [ -f "$tmp" ]; then
+#         dir="$(cat "$tmp")"
+#         rm -f "$tmp"
+#         [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+#     fi
+# }
+# bindkey -s '^o' 'lfcd\n'
 
 # Alias
+alias cdl="cd -"
 alias cs50="gcc -lcs50-9.0.0"
 alias gp=gitpush
 alias python=python3
@@ -144,5 +159,10 @@ fi
 complete -o nospace -C /Users/$(whoami)/terraform/vault vault
 complete -C '/Users/$(whoami)/Library/Python/3.7/bin/aws_completer' aws
 
-# Plugins
-plugins=(git aws history kubectl httpie brew python)
+# fzf
+#$(brew --prefix)/opt/fzf/install
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Kube PS1
+source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+#PS1='$(kube_ps1)'$PS1
