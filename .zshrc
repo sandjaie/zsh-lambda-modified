@@ -67,12 +67,16 @@ alias cdl="cd -"
 alias cs50="gcc -lcs50-9.0.0"
 alias gp=gitpush
 alias python=python3
+alias pip=pip3
 alias gs="git status"
 alias pycharm="pycharm"
 alias ls="ls -FGp"
 alias vim="/usr/local/bin/vim"
 
+
 # Auto Completions
+# Autojump
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 # Kubectl
 if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
 
