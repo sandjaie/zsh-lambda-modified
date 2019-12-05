@@ -38,8 +38,8 @@ PROMPT=$'\n'$LAMBDA'\
 RPROMPT='$(get_right_prompt)'
 
 # Format for git_prompt_info()
-ZSH_THEME_GIT_PROMPT_PREFIX="at %{$fg_bold[green]%}λ %{$fg[blue]%}"
-# 
+ZSH_THEME_GIT_PROMPT_PREFIX="at %{$fg_bold[green]%} %{$fg[blue]%}"
+#
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY=""
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%} ✔"
@@ -64,3 +64,10 @@ SHOW_AWS_PROMPT=true
 # AWS
 ZSH_THEME_AWS_PREFIX="[aws-profile:"
 ZSH_THEME_AWS_SUFFIX="]"
+
+# KUBECONFIG
+#KUBE_CONFIG="[kube-config: ${KUBECONFIG}]"
+
+PROMPT='$(kube_ps1)'$PROMPT
+#PS1='$(kube_ps1)'$PS1
+#PROMPT='$KUBE_CONFIG'$PROMPT
