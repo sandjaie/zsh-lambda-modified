@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/SRavi-MacBook/.oh-my-zsh"
+export ZSH="~/.oh-my-zsh"
 
 ZSH_THEME="lambda-mod"
 
@@ -38,14 +38,14 @@ export PATH=/Users/$(whoami)/Library/Python/3.7/bin/aws:/Users/$(whoami)/Library
 export LIBRARY_PATH=/usr/local/lib
 export C_INCLUDE_PATH=/usr/local/include
 export LD_LIBRARY_PATH=/usr/local/lib
-export KUBECONFIG=$KUBECONFIG:~/.kube/config-playground
+#export KUBECONFIG=$KUBECONFIG:~/.kube/config-playground
 
 eval "$(direnv hook zsh bash)"
 
 # Functions
 # gitpush -- using for dummy pushes
 gitpush() {
-    git add $1
+    git add "$1"
     git commit -m "$2"
     git push
 }
