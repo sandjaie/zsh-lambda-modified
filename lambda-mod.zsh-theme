@@ -28,12 +28,20 @@ function get_right_prompt() {
     fi
 }
 
+# PROMPT=$'\n'$LAMBDA'\
+#  %{$fg_bold[$USERCOLOR]%}%n\
+#  %{$fg_no_bold[magenta]%}[%3~]\
+#  $(aws_prompt_info)\
+#  $(check_git_prompt_info)\
+#  %{$reset_color%}'
+
+
 PROMPT=$'\n'$LAMBDA'\
- %{$fg_bold[$USERCOLOR]%}%n\
  %{$fg_no_bold[magenta]%}[%3~]\
  $(aws_prompt_info)\
  $(check_git_prompt_info)\
  %{$reset_color%}'
+
 
 RPROMPT='$(get_right_prompt)'
 
