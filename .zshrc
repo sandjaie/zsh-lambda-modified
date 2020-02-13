@@ -33,22 +33,24 @@ unsetopt share_history
 
 # Exports
 export LANG=en_US.UTF-8
-export PATH=/Users/$(whoami)/Library/Python/3.7/bin/aws:/Users/$(whoami)/Library/Python/3.7/bin:/Users/$(whoami)/Library/Python/3.7/bin/aws_completer:/Users/$(whoami)/terraform:$PATH
+export LC_ALL=en_US.UTF-8
+export PATH=/Users/$(whoami)/Library/Python/3.7/bin/aws:/Users/$(whoami)/Library/Python/3.7/bin:/Users/$(whoami)/Library/Python/3.7/bin/aws_completer:/Users/$(whoami)/terraform:/Users/$(whoami)/go/bin:$PATH
 #export SSLKEYLOGFILE=/Users/$(whoami)/testws/kring/ssh_keys.txt
 export LIBRARY_PATH=/usr/local/lib
 export C_INCLUDE_PATH=/usr/local/include
 export LD_LIBRARY_PATH=/usr/local/lib
 #export KUBECONFIG=$KUBECONFIG:~/.kube/config-playground
-
+export DIRENV_WARN_TIMEOUT=100s
+export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
 eval "$(direnv hook zsh bash)"
 
 # Functions
 # gitpush -- using for dummy pushes
-gitpush() {
-    git add "$1"
-    git commit -m "$2"
-    git push
-}
+#gitpush() {
+#    git add "$1"
+#    git commit -m "$2"
+#    git push
+#}
 
 # Use lf to switch directories and bind it to ctrl-o
 # lfcd() {
@@ -65,9 +67,9 @@ gitpush() {
 # Alias
 alias cdl="cd -"
 alias cs50="gcc -lcs50-9.0.0"
-alias gp=gitpush
+#alias gp=gitpush
 alias python=python3
-alias pip=pip3
+#alias pip=pip3
 alias gs="git status"
 alias pycharm="pycharm"
 alias ls="ls -FGp"
@@ -95,3 +97,6 @@ complete -C '/Users/$(whoami)/Library/Python/3.7/bin/aws_completer' aws
 # Kube PS1
 source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
 #PS1='$(kube_ps1)'$PS1
+
+# added by travis gem
+[ -f /Users/SRavi-MacBook/.travis/travis.sh ] && source /Users/SRavi-MacBook/.travis/travis.sh
