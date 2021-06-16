@@ -91,7 +91,7 @@ fi
 # complete
 # vault
 complete -o nospace -C /Users/$(whoami)/terraform/vault vault
-# AWS 
+# AWS
 complete -C '/usr/local/bin/aws_completer' aws
 
 # Kube PS1
@@ -126,15 +126,17 @@ export AWS_DEFAULT_REGION=eu-central-1
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/repos/custom/powerlevel10k/config/p10k-pure.zsh.
-[[ ! -f ~/repos/custom/powerlevel10k/config/p10k-pure.zsh ]] || source ~/repos/custom/powerlevel10k/config/p10k-pure.zsh
+[[ ! -f $ZSH_CUSTOM/themes/powerlevel10k/config/p10k-pure.zsh ]] || source $ZSH_CUSTOM/themes/powerlevel10k/config/p10k-pure.zsh
 
 # tmux
 export TERM=xterm-256color
 export PATH="/usr/local/opt/ncurses/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
-source ~/repos/custom/powerlevel10k/powerlevel10k.zsh-theme
+source $ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.iterm2_shell_integration.zsh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+# To customize prompt, run `p10k configure` or edit ~/.oh-my-zsh/custom/themes/powerlevel10k/config/p10k-pure.zsh.
+[[ ! -f ~/.oh-my-zsh/custom/themes/powerlevel10k/config/p10k-pure.zsh ]] || source ~/.oh-my-zsh/custom/themes/powerlevel10k/config/p10k-pure.zsh
