@@ -1,0 +1,66 @@
+call plug#begin()
+" The default plugin directory will be as follows:
+"   - Vim (Linux/macOS): '~/.vim/plugged'
+"   - Vim (Windows): '~/vimfiles/plugged'
+"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
+" You can specify a custom plugin directory by passing it as the argument
+"   - e.g. `call plug#begin('~/.vim/plugged')`
+"   - Avoid using standard Vim directory names like 'plugin'
+
+" Make sure you use single quotes
+
+Plug 'junegunn/vim-easy-align'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'luochen1990/rainbow'
+Plug 'stephpy/vim-yaml'
+
+Plug 'andrewstuart/vim-kubernetes'
+
+" Plug 'sainnhe/sonokai'
+" Plug 'joshdick/onedark.vim'
+Plug 'arcticicestudio/nord-vim'
+Plug 'sheerun/vim-polyglot'
+
+" On-demand loading
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+
+" Plugin outside ~/.vim/plugged with post-update hook
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+" Initialize plugin system
+call plug#end()
+
+" Themes
+" ======
+" sonokai theme config
+" Important!!
+" if has('termguicolors')
+" set termguicolors
+" endif
+" The configuration options should be placed before `colorscheme sonokai`.
+" let g:sonokai_style = 'maia'
+" let g:sonokai_enable_italic = 1
+" let g:sonokai_disable_italic_comment = 1
+" colorscheme sonokai
+" one dark
+" let g:onedark_hide_endofbuffer=1
+" Nord
+colorscheme nord
+
+" general options
+set termguicolors
+set number
+syntax on
+
+" Airline theme
+let g:airline_theme='nord'
+
+" Rainbow paranthesis
+let g:rainbow_active=1
+
+" vim yaml
+let g:yaml_limit_spell=1
+
+set hlsearch
