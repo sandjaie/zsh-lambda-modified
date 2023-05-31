@@ -1,0 +1,120 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+#ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# ZSH Options
+unsetopt prompt_cr prompt_sp
+autoload -U +X bashcompinit && bashcompinit
+#setopt share_history
+setopt no_share_history
+unsetopt share_history
+source $ZSH/oh-my-zsh.sh
+
+# Exports
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+#export PATH=/Users/$(whoami)/Library/Python/3.7/bin:/Users/$(whoami)/terraform:/Users/$(whoami)/go/bin:/usr/local/opt/nvim-osx64/bin:$PATH
+export PATH=/usr/local/opt/nvim-osx64/bin:$PATH
+export PATH=/Users/saravi/mylocal/google-cloud-sdk/bin:$PATH
+export PATH=/usr/local/go/bin:$PATH
+#export PATH="$HOME/.tgenv/bin:$PATH"
+#export SSLKEYLOGFILE=/Users/$(whoami)/testws/kring/ssh_keys.txt
+#export LIBRARY_PATH=/usr/local/lib
+#export C_INCLUDE_PATH=/usr/local/include
+#export LD_LIBRARY_PATH=/usr/local/lib
+#export DIRENV_WARN_TIMEOUT=100s
+export KUBECONFIG=${HOME}/.kube/config:${HOME}/.kube/kubeconfig:${HOME}/.kube/cv2_autocerberus_hood
+
+# Alias
+alias cdl="cd -"
+alias cs50="gcc -lcs50-9.0.0"
+#alias python="python3"
+#alias pip="pip3"
+alias gs="git status"
+alias ls="ls -FGp"
+alias vim="vim"
+alias cim="nvim"
+alias sshcit="ssh citadel.devops.cloudgenix.com -i ~/.ssh/halo_id_rsa"
+alias sshfr="ssh 52.61.136.146 -i ~/.ssh/devops-apr-03-2019 -l ubuntu"
+alias sshafr="ssh -i ~/.ssh/devops-apr-03-2019 ubuntu@3.30.206.58"
+alias sshmfr="ssh -i ~/.ssh/devops-apr-03-2019 ubuntu@15.205.19.53"
+alias sshmy="ssh -i ~/.ssh/sand10_apsouth1 -o ServerAliveInterval=3600 "
+#alias gimme-aws-creds="gimme-aws-creds --profile saravi_AWS-Universal-IDP"
+alias fedautohoodsdwanapp="aws eks --region us-west-2 update-kubeconfig --name controllerv2-autofedramptf-sdwanapp-1-eks-cluster --profile prisma-sdwan-aws-staging-1-/sso_admin ; aws sts get-caller-identity  --profile prisma-sdwan-aws-staging-1-/sso_admin"
+alias fedautohood="aws eks --region us-west-2 update-kubeconfig --name controllerv2-autofedramptf-1-eks-cluster --profile prisma-sdwan-aws-staging-1-/sso_admin ; aws sts get-caller-identity  --profile prisma-sdwan-aws-staging-1-/sso_admin"
+alias k=kubectl
+# alias aws="/usr/local/bin/aws"
+
+# fzf
+#$(brew --prefix)/opt/fzf/install
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# AWS
+# complete -C '/usr/local/bin/aws_completer' aws
+
+### Fix slowness of pastes with zsh-syntax-highlighting.zsh
+pasteinit() {
+  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
+  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
+}
+
+pastefinish() {
+  zle -N self-insert $OLD_SELF_INSERT
+}
+zstyle :bracketed-paste-magic paste-init pasteinit
+zstyle :bracketed-paste-magic paste-finish pastefinish
+### Fix slowness of pastes
+
+# Plugins
+#plugins=(fzf zsh-z zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(fzf kubectl)
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/repos/custom/powerlevel10k/config/p10k-pure.zsh.
+[[ ! -f $ZSH_CUSTOM/themes/powerlevel10k/config/p10k-pure.zsh ]] || source $ZSH_CUSTOM/themes/powerlevel10k/config/p10k-pure.zsh
+
+source $ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme
+source ~/.iterm2_shell_integration.zsh
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# Autojump
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/saravi/mylocal/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/saravi/mylocal/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/saravi/mylocal/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/saravi/mylocal/google-cloud-sdk/completion.zsh.inc'; fi
+#export PATH="$PATH:/Users/saravi/Library/Python/3.8:$PATH"
+export GETMESH_HOME="$HOME/.getmesh"
+export PATH="$GETMESH_HOME/bin:$PATH"
+export PATH="$HOME/.tgenv/bin:$PATH"
+export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
+#asdf
+. /usr/local/opt/asdf/libexec/asdf.sh
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
